@@ -17,4 +17,3 @@ export const Container = styled.div`
     }
   }
 `;
-export const Uhu = styled.div``;

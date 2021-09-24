@@ -8,4 +8,3 @@ export const Container = styled.div`
   line-height: 20px;
   padding: 0 5px;
 `;
-export const alo = styled.div``;

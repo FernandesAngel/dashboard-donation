@@ -1,7 +1,19 @@
-import { Container } from './styles';
+import { ButtonHTMLAttributes } from 'react';
+import { ImSpinner8 } from 'react-icons/im';
+import * as S from './styles';
 
-const Button: React.FC = () => {
-  return <h1>a</h1>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLInputElement> {
+  title: string;
+  load?: boolean;
+  small?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({ title, load, small = false }) => {
+  return (
+    <S.Container type="submit" disabled={load} small={small}>
+      {load ? <ImSpinner8 size={20} /> : title}
+    </S.Container>
+  );
 };
 
 export default Button;

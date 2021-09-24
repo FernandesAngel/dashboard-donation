@@ -18,4 +18,10 @@ export const Form = styled.form`
   margin: 0 auto;
   padding: 20px;
   border-radius: 6px;
+
+  h1 {
+    font-size: 22px;
+    padding-bottom: 10px;
+    font-weight: 700;
+  }
 `;
