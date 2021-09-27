@@ -13,7 +13,7 @@ export function Card({ title, description, imageUrl }: CardProps): JSX.Element {
     <S.Container>
       <S.TitleContent>
         <Title label={title} />
-        <EditButton url="/" />
+        <EditButton url="/projects/edit" />
       </S.TitleContent>
       <S.CardImage src={imageUrl} />
       <p>{description}</p>
