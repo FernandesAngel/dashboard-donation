@@ -1,4 +1,8 @@
-import React, { TextareaHTMLAttributes } from 'react';
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  TextareaHTMLAttributes,
+} from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { Container } from './styles';
 
@@ -7,17 +11,16 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   errorMessage?: string;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({
-  label,
-  errorMessage,
-  ...rest
-}) => {
+const TextAreaBase: ForwardRefRenderFunction<
+  HTMLTextAreaElement,
+  TextAreaProps
+> = ({ label, errorMessage, ...rest }: TextAreaProps, ref) => {
   return (
     <Container>
-      <textarea {...rest} placeholder={label} rows={10} />
+      <textarea {...rest} placeholder={label} rows={10} ref={ref} />
       <ErrorMessage message={errorMessage} />
     </Container>
   );
 };
 
-export default TextArea;
+export const TextArea = forwardRef(TextAreaBase);

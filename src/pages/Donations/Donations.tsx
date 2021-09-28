@@ -10,17 +10,6 @@ const Donations: React.FC = () => {
       <S.Container>
         <Title label="DOAÇÕES" />
         <ProjectHeader />
-        {/* <S.Table>
-          <div>
-            <h2>MÉTODO DE PAGAMENTO</h2>
-          </div>
-          <div>
-            <h2>VALOR</h2>
-          </div>
-          <div>
-            <h2>DATA</h2>
-          </div>
-        </S.Table> */}
         <DonationCard
           method="Cartão de crédito"
           price={1000}

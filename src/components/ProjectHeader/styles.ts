@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 24px;
+  margin: 24px 0;
   justify-content: stretch;
   img {
     border-radius: 6px;
