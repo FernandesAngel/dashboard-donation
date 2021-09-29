@@ -1,20 +1,33 @@
 import * as S from './styles';
 
-import ProfileImg from '../../assets/img1.jpeg';
+import noImg from '../../assets/noimage.png';
+import { formatCurrency } from '../../utils/formatCurrency';
 
-export function ProjectHeader(): JSX.Element {
+interface ProjectHeaderProps {
+  title: string;
+  image: string;
+  total: number;
+  qtd: number;
+}
+
+export function ProjectHeader({
+  image,
+  title,
+  qtd,
+  total,
+}: ProjectHeaderProps): JSX.Element {
   return (
     <S.Container>
-      <img src={ProfileImg} alt="project" />
+      <img src={image || noImg} alt="project" />
       <S.Content>
-        <h1>Título do projeto</h1>
+        <h1>{title}</h1>
         <S.Insights>
           <S.InsightBox>
-            <p>230</p>
+            <p>{qtd}</p>
             <h2>Doações</h2>
           </S.InsightBox>
           <S.InsightBox>
-            <p>R$3.000,00</p>
+            <p>{formatCurrency(total)}</p>
             <h2>Total</h2>
           </S.InsightBox>
         </S.Insights>

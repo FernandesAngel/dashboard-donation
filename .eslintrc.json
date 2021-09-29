@@ -33,6 +33,7 @@
       "import/no-duplicates": "off",
       "react/jsx-one-expression-per-line": "off",
       "import/prefer-default-export": "off",
+      "no-underscore-dangle": "off",
       "react/jsx-filename-extension": [
         1,
         {

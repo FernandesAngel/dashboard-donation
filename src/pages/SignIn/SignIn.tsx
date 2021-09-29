@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
           errorMessage={errors.password?.message}
           type="password"
         />
-        <Button title="Entrar" load={loading} />
+        <Button type="submit" title="Entrar" load={loading} />
       </S.Form>
     </S.Container>
   );

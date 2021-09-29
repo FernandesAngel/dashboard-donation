@@ -1,24 +1,30 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useCallback } from 'react';
 import Button from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Template } from '../../components/Template';
 import { TextArea } from '../../components/TextArea';
 import { Title } from '../../components/Title';
 import * as S from './styles';
+import { ProjectData } from '../../hooks/project/interfaces';
+import { useProject } from '../../hooks/project';
 
 type ProjectFormData = {
-  title: string;
+  name: string;
   description: string;
+  image: string;
 };
 
 const schemaProject = yup.object({
-  title: yup.string().required('Título Obrigatório'),
+  name: yup.string().required('Título Obrigatório'),
   description: yup.string().required('Descrição obrigatória'),
+  image: yup.string(),
 });
 
 const CreateProject: React.FC = () => {
+  const { createProject, loading } = useProject();
   const {
     register,
     handleSubmit,
@@ -26,9 +32,12 @@ const CreateProject: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schemaProject),
   });
-  const handleCreateProject: SubmitHandler<ProjectFormData> = async values => {
-    console.log(values);
-  };
+  const handleCreateProject = useCallback(
+    async (project: ProjectFormData) => {
+      await createProject(project);
+    },
+    [createProject],
+  );
 
   return (
     <Template>
@@ -39,16 +48,16 @@ const CreateProject: React.FC = () => {
         <S.Form onSubmit={handleSubmit(handleCreateProject)}>
           <Input
             label="Título do Projeto"
-            {...register('title')}
-            errorMessage={errors.title?.message}
+            {...register('name')}
+            errorMessage={errors.name?.message}
           />
           <TextArea
             label="Descrição"
             {...register('description')}
             errorMessage={errors.description?.message}
           />
-          <Input label="Imagem?" />
-          <Button title="Criar Projeto" />
+          <Input label="Imagem?" {...register('image')} />
+          <Button type="submit" title="Criar Projeto" load={loading} />
         </S.Form>
       </S.Container>
     </Template>

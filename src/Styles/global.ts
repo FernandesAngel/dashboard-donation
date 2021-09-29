@@ -24,4 +24,8 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .black-background {
+    background-color: #6840dc;
+  }
 `;

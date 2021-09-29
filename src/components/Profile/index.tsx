@@ -7,7 +7,7 @@ import { EditButton } from '../EditButton';
 import { useAuth } from '../../hooks/auth';
 
 export function Profile(): JSX.Element {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const handleSignOut = useCallback(() => {
     signOut();
   }, [signOut]);
@@ -15,7 +15,7 @@ export function Profile(): JSX.Element {
   return (
     <S.Container>
       <S.Avatar src={ProfileImg} />
-      <p>Angel Fernandes</p>
+      <p>{user.name}</p>
       <EditButton url="/profile" />
       <S.LogoutButton to="/" onClick={handleSignOut}>
         <FiLogOut size={24} />

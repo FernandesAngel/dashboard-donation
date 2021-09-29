@@ -1,22 +1,51 @@
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { DonationCard } from '../../components/DonationCard';
 import { ProjectHeader } from '../../components/ProjectHeader';
 import { Template } from '../../components/Template';
 import { Title } from '../../components/Title';
+import { useDonation } from '../../hooks/donation';
 import * as S from './styles';
 
 const Donations: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { getDonationByProject, loading, data } = useDonation();
+
+  useEffect(() => {
+    getDonationByProject(id);
+  }, [getDonationByProject, id]);
+
+  console.log('aaa', data.donations.length);
+
   return (
     <Template>
       <S.Container>
         <Title label="DOAÇÕES" />
-        <ProjectHeader />
-        <DonationCard
-          method="Cartão de crédito"
-          price={1000}
-          date="26/01/2021"
-        />
-        <DonationCard method="Pix" price={1567.52} date="26/01/2021" />
-        <DonationCard method="Cartão de crédito" price={10} date="26/01/2021" />
+        {loading ? (
+          <p>Aguarde! Carregando as doações</p>
+        ) : (
+          <>
+            <ProjectHeader
+              title={data.name}
+              image={data.image}
+              total={data.total}
+              qtd={data.qtd}
+            />
+
+            {data.donations?.length > 0 ? (
+              data.donations.map(d => (
+                <DonationCard
+                  key={d._id}
+                  method={d.method}
+                  price={d.price.$numberDecimal}
+                  date={d.createdAt}
+                />
+              ))
+            ) : (
+              <p>nada</p>
+            )}
+          </>
+        )}
       </S.Container>
     </Template>
   );

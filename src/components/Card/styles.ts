@@ -6,6 +6,8 @@ export const Container = styled.article`
   background-color: #1f2029;
   border-radius: 6px;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TitleContent = styled.div`
@@ -17,6 +19,9 @@ export const TitleContent = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
+`;
+export const Content = styled.div`
+  flex: 1;
 `;
 export const CardImage = styled.img`
   width: 100%;

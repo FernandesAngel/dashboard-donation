@@ -10,6 +10,9 @@ export interface User {
 
   avatar?: string;
 }
+export interface UpdateUser {
+  name: string;
+}
 
 export interface AuthState {
   jwtToken: string;
@@ -20,6 +23,6 @@ export interface AuthContextData {
   user: User;
   signIn(credentials: SignInCredencials): Promise<void>;
   signOut(): void;
-  updateUser(user: User): void;
+  updateUser(id: string, user: UpdateUser): Promise<void>;
   loading: boolean;
 }

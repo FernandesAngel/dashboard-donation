@@ -2,12 +2,14 @@ import { FiCamera } from 'react-icons/fi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useCallback } from 'react';
 import Button from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Template } from '../../components/Template';
 import { Title } from '../../components/Title';
 import ProfileImg from '../../assets/img1.jpeg';
 import * as S from './styles';
+import { useAuth } from '../../hooks/auth';
 
 type ProfileFormData = {
   name: string;
@@ -23,16 +25,25 @@ const schemaProfile = yup.object({
 });
 
 const EditProfile: React.FC = () => {
+  const { user, updateUser, loading } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaProfile),
+    defaultValues: {
+      name: user.name,
+    },
   });
-  const handleEditProfile: SubmitHandler<ProfileFormData> = async values => {
-    console.log(values);
-  };
+  const handleEditProfile = useCallback(
+    async dataUpdateUser => {
+      await updateUser(user._id, dataUpdateUser);
+    },
+    [updateUser, user],
+  );
+
   return (
     <Template>
       <S.Container>
@@ -50,10 +61,7 @@ const EditProfile: React.FC = () => {
             </S.AvatarInput>
           </S.AvatarContent>
           <Input label="Nome" {...register('name')} />
-          <Input label="Email" {...register('email')} />
-          <Input label="Nova Senha" {...register('newPassword')} />
-          <Input label="Confirmar senha" />
-          <Button title="Salvar Alterações" />
+          <Button type="submit" title="Salvar Alterações" load={loading} />
         </S.Form>
       </S.Container>
     </Template>

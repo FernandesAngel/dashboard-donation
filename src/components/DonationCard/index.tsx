@@ -1,3 +1,5 @@
+import { formatCurrency } from '../../utils/formatCurrency';
+import { dateFormat } from '../../utils/formatDatePT';
 import * as S from './styles';
 
 interface DonationCardProps {
@@ -16,10 +18,10 @@ export function DonationCard({
         <p>{method}</p>
       </div>
       <div>
-        <p className="price">R${price}</p>
+        <p className="price">{formatCurrency(price)}</p>
       </div>
       <div>
-        <p>{date}</p>
+        <p>{dateFormat(date)}h</p>
       </div>
     </S.Container>
   );
