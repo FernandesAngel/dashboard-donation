@@ -8,7 +8,7 @@ export interface DonationData {
 export interface ProjectDonationProps {
   _id: string;
   name: string;
-  image: string;
+  imageUrl: string;
   donations: DonationData[];
   total: number;
   qtd: number;

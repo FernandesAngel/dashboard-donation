@@ -5,7 +5,8 @@ import { useToast } from '../toast';
 import {
   ProjectContextData,
   ProjectData,
-  ProjectUpdateData,
+  ProjectCreateUpdateData,
+  ProjectStatusData,
 } from './interfaces';
 
 const ProjectContext = createContext<ProjectContextData>(
@@ -17,6 +18,7 @@ export const ProjectProvider: React.FC = ({ children }) => {
   const { addToast } = useToast();
   const [data, setData] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(false);
   const getProjects = useCallback(async () => {
     try {
       setLoading(true);
@@ -30,7 +32,7 @@ export const ProjectProvider: React.FC = ({ children }) => {
   }, [addToast]);
 
   const createProject = useCallback(
-    async (project: Omit<ProjectData, '_id'>) => {
+    async (project: ProjectCreateUpdateData) => {
       try {
         setLoading(true);
         const responseProject = await api.post('projects/create', project);
@@ -48,7 +50,7 @@ export const ProjectProvider: React.FC = ({ children }) => {
   );
 
   const updateProject = useCallback(
-    async (id: string, project: ProjectUpdateData) => {
+    async (id: string, project: ProjectCreateUpdateData) => {
       try {
         setLoading(true);
         const responseProject = await api.patch(`projects/${id}`, project);
@@ -63,11 +65,59 @@ export const ProjectProvider: React.FC = ({ children }) => {
         setLoading(false);
       }
     },
+    [addToast, history],
+  );
+
+  const updateStatus = useCallback(
+    async (id: string, project: ProjectStatusData) => {
+      try {
+        const responseProject = await api.patch(
+          `projects/status/${id}`,
+          project,
+        );
+        setData(state =>
+          state.map(p => (p._id === id ? responseProject.data : p)),
+        );
+        addToast('Status atualizado com sucesso', 'success');
+      } catch (error) {
+        addToast('Erro ao atualizar status', 'error');
+      }
+    },
     [addToast],
+  );
+
+  const updateImage = useCallback(
+    async (id: string, image: any) => {
+      try {
+        setLoadingImage(true);
+        const dataImage = new FormData();
+        dataImage.append('image', image);
+
+        const response = await api.patch(`/projects/image/${id}`, dataImage);
+
+        setData(state => state.map(p => (p._id === id ? response.data : p)));
+        setLoadingImage(false);
+        addToast('Imagem atualizada com sucesso', 'success');
+        history.push('/projects');
+      } catch (error) {
+        addToast('Erro ao atualizar projeto', 'error');
+        setLoadingImage(false);
+      }
+    },
+    [addToast, history],
   );
   return (
     <ProjectContext.Provider
-      value={{ data, getProjects, loading, createProject, updateProject }}
+      value={{
+        data,
+        getProjects,
+        loading,
+        createProject,
+        updateProject,
+        loadingImage,
+        updateImage,
+        updateStatus,
+      }}
     >
       {children}
     </ProjectContext.Provider>

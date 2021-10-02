@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useCallback } from 'react';
@@ -8,19 +8,16 @@ import { Template } from '../../components/Template';
 import { TextArea } from '../../components/TextArea';
 import { Title } from '../../components/Title';
 import * as S from './styles';
-import { ProjectData } from '../../hooks/project/interfaces';
 import { useProject } from '../../hooks/project';
 
 type ProjectFormData = {
   name: string;
   description: string;
-  image: string;
 };
 
 const schemaProject = yup.object({
   name: yup.string().required('Título Obrigatório'),
   description: yup.string().required('Descrição obrigatória'),
-  image: yup.string(),
 });
 
 const CreateProject: React.FC = () => {
@@ -56,7 +53,6 @@ const CreateProject: React.FC = () => {
             {...register('description')}
             errorMessage={errors.description?.message}
           />
-          <Input label="Imagem?" {...register('image')} />
           <Button type="submit" title="Criar Projeto" load={loading} />
         </S.Form>
       </S.Container>

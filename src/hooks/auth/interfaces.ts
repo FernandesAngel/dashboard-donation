@@ -9,6 +9,7 @@ export interface User {
   email: string;
 
   avatar?: string;
+  avatarUrl: string;
 }
 export interface UpdateUser {
   name: string;
@@ -23,6 +24,9 @@ export interface AuthContextData {
   user: User;
   signIn(credentials: SignInCredencials): Promise<void>;
   signOut(): void;
-  updateUser(id: string, user: UpdateUser): Promise<void>;
+  updateUser(user: UpdateUser): Promise<void>;
   loading: boolean;
+  loadingImage: boolean;
+
+  updateAvatar(avatar: any): Promise<void>;
 }

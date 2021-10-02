@@ -27,7 +27,7 @@ const Donations: React.FC = () => {
           <>
             <ProjectHeader
               title={data.name}
-              image={data.image}
+              image={data.imageUrl}
               total={data.total}
               qtd={data.qtd}
             />

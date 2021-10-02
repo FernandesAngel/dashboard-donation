@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { rotationBuilder } from '../../components/Button/styles';
 
 export const Container = styled.div`
   width: 700px;
@@ -67,4 +68,22 @@ export const AvatarInput = styled.div`
       background: ${shade(0.2, '#6840dc')};
     }
   }
+  .rotate {
+    animation: ${rotationBuilder()} 1s linear infinite;
+  }
+`;
+
+export const ContainerLoad = styled.div`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #6840dc;
+  border-radius: 50%;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

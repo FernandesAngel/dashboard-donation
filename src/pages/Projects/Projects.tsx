@@ -44,7 +44,8 @@ export function Projects(): JSX.Element {
                 _id={project._id}
                 title={project.name}
                 description={project.description}
-                imageUrl={project.image}
+                imageUrl={project.imageUrl}
+                status={project.status}
               />
             ))}
           </S.Grid>

@@ -16,7 +16,7 @@ export const DonationProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<ProjectDonationProps>({
     _id: '',
     name: '',
-    image: '',
+    imageUrl: '',
     donations: [],
     total: 0,
     qtd: 0,

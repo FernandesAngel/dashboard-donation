@@ -10,7 +10,7 @@ export const Container = styled.article`
   flex-direction: column;
 `;
 
-export const TitleContent = styled.div`
+export const HeaderCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,11 +23,25 @@ export const TitleContent = styled.div`
 export const Content = styled.div`
   flex: 1;
 `;
+export const TitleContent = styled.div`
+  flex: 1;
+  margin-right: 8px;
+`;
+export const ImageContainer = styled.div`
+  position: relative;
+
+  margin-bottom: 16px;
+`;
+export const ContainerSwitch = styled.div`
+  padding: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+`;
 export const CardImage = styled.img`
   width: 100%;
   height: 200px;
   border-radius: 6px;
-  margin-bottom: 16px;
 `;
 export const ButtonContainer = styled.div`
   width: 100%;

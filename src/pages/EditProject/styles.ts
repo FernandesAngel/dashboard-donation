@@ -68,3 +68,25 @@ export const AvatarInput = styled.div`
     }
   }
 `;
+
+export const ContainerLoad = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #6840dc;
+  border-radius: 50%;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const ContentButton = styled.div``;
