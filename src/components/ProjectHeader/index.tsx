@@ -1,7 +1,12 @@
+import { useMemo } from 'react';
 import * as S from './styles';
 
 import noImg from '../../assets/noimage.png';
-import { formatCurrency } from '../../utils/formatCurrency';
+import {
+  currencyMask,
+  formatCurrency,
+  padLeadingZeros,
+} from '../../utils/formatCurrency';
 
 interface ProjectHeaderProps {
   title: string;
@@ -16,6 +21,15 @@ export function ProjectHeader({
   qtd,
   total,
 }: ProjectHeaderProps): JSX.Element {
+  const totalFormatted = useMemo(() => {
+    if (String(total).length > 2) {
+      return currencyMask(total);
+    }
+    if (String(total).length === 2) {
+      return currencyMask(padLeadingZeros(total, 4));
+    }
+    return currencyMask(padLeadingZeros(total, 5));
+  }, [total]);
   return (
     <S.Container>
       <img src={image || noImg} alt="project" />
@@ -27,7 +41,7 @@ export function ProjectHeader({
             <h2>Doações</h2>
           </S.InsightBox>
           <S.InsightBox>
-            <p>{formatCurrency(total)}</p>
+            <p>{totalFormatted}</p>
             <h2>Total</h2>
           </S.InsightBox>
         </S.Insights>

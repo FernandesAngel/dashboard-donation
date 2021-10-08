@@ -15,5 +15,9 @@ export const Container = styled.div`
     :focus {
       border: 2px solid #6840dc;
     }
+    :-webkit-autofill {
+      -webkit-text-fill-color: #fff;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
 `;
