@@ -1,12 +1,6 @@
-import { ButtonHTMLAttributes } from 'react';
 import { ImSpinner8 } from 'react-icons/im';
+import { ButtonProps } from './interface';
 import * as S from './styles';
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  title: string;
-  load?: boolean;
-  small?: boolean;
-}
 
 const Button: React.FC<ButtonProps> = ({
   title,

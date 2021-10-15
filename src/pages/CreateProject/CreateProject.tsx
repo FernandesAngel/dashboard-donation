@@ -9,11 +9,7 @@ import { TextArea } from '../../components/TextArea';
 import { Title } from '../../components/Title';
 import * as S from './styles';
 import { useProject } from '../../hooks/project';
-
-type ProjectFormData = {
-  name: string;
-  description: string;
-};
+import { ProjectFormData } from './interface';
 
 const schemaProject = yup.object({
   name: yup.string().required('Título Obrigatório'),

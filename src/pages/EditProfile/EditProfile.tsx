@@ -1,5 +1,5 @@
 import { FiCamera } from 'react-icons/fi';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { ChangeEvent, useCallback } from 'react';
@@ -8,17 +8,8 @@ import Button from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Template } from '../../components/Template';
 import { Title } from '../../components/Title';
-import ProfileImg from '../../assets/img1.jpeg';
 import * as S from './styles';
 import { useAuth } from '../../hooks/auth';
-import { api } from '../../services/api';
-
-type ProfileFormData = {
-  name: string;
-  email: string;
-  newPassword: string;
-  passwordConfirmation: string;
-};
 
 const schemaProfile = yup.object({
   name: yup.string(),

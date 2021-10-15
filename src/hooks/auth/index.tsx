@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { useToast } from '../toast';
 import { api } from '../../services/api';
-import { AuthContextData, AuthState, UpdateUser, User } from './interfaces';
+import { AuthContextData, AuthState, UpdateUser } from './interfaces';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -91,7 +91,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         dataImage.append('avatar', avatar);
 
         const response = await api.post('/users/avatar', dataImage);
-        console.log('data', response.data);
         setData(state => {
           return {
             ...state,
@@ -108,7 +107,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         setLoading(false);
         addToast('Usuário atualizado com sucesso', 'success');
       } catch (error) {
-        console.log('erro', error);
         addToast('Erro ao atualizar avatar', 'error');
         setLoading(false);
       }

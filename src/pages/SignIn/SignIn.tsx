@@ -6,11 +6,7 @@ import Button from '../../components/Button';
 import { Input } from '../../components/Input';
 import * as S from './styles';
 import { useAuth } from '../../hooks/auth';
-
-type SignInFormData = {
-  email: string;
-  password: string;
-};
+import { SignInFormData } from './interface';
 
 const schemaSignIn = yup.object({
   email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
@@ -26,9 +22,6 @@ const SignIn: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schemaSignIn),
   });
-  // const handleSignIn: SubmitHandler<SignInFormData> = async values => {
-  //   console.log(values);
-  // };
 
   const handleSignIn = useCallback(
     async (credentials: SignInFormData) => {
@@ -41,8 +34,6 @@ const SignIn: React.FC = () => {
     <S.Container>
       <S.Form onSubmit={handleSubmit(handleSignIn)}>
         <h1>Login</h1>
-        {/* <input type="text" {...register('email')} />
-        <input type="text" {...register('password')} /> */}
         <Input
           label="E-mail"
           {...register('email')}

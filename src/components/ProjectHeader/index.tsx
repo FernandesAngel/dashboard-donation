@@ -2,18 +2,8 @@ import { useMemo } from 'react';
 import * as S from './styles';
 
 import noImg from '../../assets/noimage.png';
-import {
-  currencyMask,
-  formatCurrency,
-  padLeadingZeros,
-} from '../../utils/formatCurrency';
-
-interface ProjectHeaderProps {
-  title: string;
-  image: string;
-  total: number;
-  qtd: number;
-}
+import { currencyMask, padLeadingZeros } from '../../utils/formatCurrency';
+import { ProjectHeaderProps } from './interface';
 
 export function ProjectHeader({
   image,

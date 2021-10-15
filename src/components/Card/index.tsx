@@ -7,14 +7,8 @@ import { Title } from '../Title';
 import * as S from './styles';
 import noImg from '../../assets/noimage.png';
 import { useProject } from '../../hooks/project';
+import { CardProps } from './interface';
 
-interface CardProps {
-  _id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  status: boolean;
-}
 export function Card({
   _id,
   title,

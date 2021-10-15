@@ -1,13 +1,9 @@
 import { useMemo } from 'react';
 import { currencyMask, padLeadingZeros } from '../../utils/formatCurrency';
 import { dateFormat } from '../../utils/formatDatePT';
+import { DonationCardProps } from './interface';
 import * as S from './styles';
 
-interface DonationCardProps {
-  method: string;
-  price: number;
-  date: string;
-}
 export function DonationCard({
   date,
   price,

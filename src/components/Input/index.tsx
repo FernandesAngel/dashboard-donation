@@ -1,15 +1,8 @@
-import React, {
-  forwardRef,
-  ForwardRefRenderFunction,
-  InputHTMLAttributes,
-} from 'react';
+import React, { forwardRef, ForwardRefRenderFunction } from 'react';
 import ErrorMessage from '../ErrorMessage';
+import { InputProps } from './interface';
 import { Container } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  errorMessage?: string;
-}
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { label, errorMessage, ...rest }: InputProps,
   ref,

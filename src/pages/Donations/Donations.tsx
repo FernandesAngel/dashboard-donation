@@ -15,8 +15,6 @@ const Donations: React.FC = () => {
     getDonationByProject(id);
   }, [getDonationByProject, id]);
 
-  console.log('aaa', data.donations.length);
-
   return (
     <Template>
       <S.Container>
