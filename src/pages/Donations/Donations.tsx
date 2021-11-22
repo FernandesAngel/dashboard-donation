@@ -40,7 +40,7 @@ const Donations: React.FC = () => {
                 />
               ))
             ) : (
-              <p>nada</p>
+              <p>Este projeto ainda não possui doações :(</p>
             )}
           </>
         )}

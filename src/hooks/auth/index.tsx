@@ -91,6 +91,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         dataImage.append('avatar', avatar);
 
         const response = await api.post('/users/avatar', dataImage);
+        console.log('alo', response.data);
         setData(state => {
           return {
             ...state,

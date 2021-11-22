@@ -2,7 +2,6 @@ import { FiLogOut } from 'react-icons/fi';
 import { useCallback } from 'react';
 import * as S from './styles';
 
-import ProfileImg from '../../assets/img1.jpeg';
 import { EditButton } from '../EditButton';
 import { useAuth } from '../../hooks/auth';
 
@@ -12,9 +11,11 @@ export function Profile(): JSX.Element {
     signOut();
   }, [signOut]);
 
+  console.log(user);
+
   return (
     <S.Container>
-      <S.Avatar src={ProfileImg} />
+      <S.Avatar src={user.avatarUrl} />
       <p>{user.name}</p>
       <EditButton url="/profile" />
       <S.LogoutButton to="/" onClick={handleSignOut}>
